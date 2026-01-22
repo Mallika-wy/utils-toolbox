@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 HuggingFace 下载工具
-支持下载模型和数据集，可配置镜像源
+支持下载模型和数据集，可配置镜像源和代理
 """
 
 import os
@@ -37,6 +37,13 @@ def download_model(
     if use_mirror:
         os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
         print(f"使用镜像源: https://hf-mirror.com")
+    
+    # 设置代理（如果环境变量中存在）
+    proxy = os.environ.get("HTTP_PROXY") or os.environ.get("HTTPS_PROXY") or os.environ.get("http_proxy") or os.environ.get("https_proxy")
+    if proxy:
+        os.environ["HTTP_PROXY"] = proxy
+        os.environ["HTTPS_PROXY"] = proxy
+        print(f"使用代理: {proxy}")
 
     # 设置保存路径
     if save_dir is None:
@@ -91,6 +98,13 @@ def download_dataset(
     if use_mirror:
         os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
         print(f"使用镜像源: https://hf-mirror.com")
+    
+    # 设置代理（如果环境变量中存在）
+    proxy = os.environ.get("HTTP_PROXY") or os.environ.get("HTTPS_PROXY") or os.environ.get("http_proxy") or os.environ.get("https_proxy")
+    if proxy:
+        os.environ["HTTP_PROXY"] = proxy
+        os.environ["HTTPS_PROXY"] = proxy
+        print(f"使用代理: {proxy}")
 
     # 设置保存路径
     if save_dir is None:

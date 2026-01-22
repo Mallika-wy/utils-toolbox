@@ -20,6 +20,12 @@ python hfd.py --model gpt2 --save-dir ./my_models/gpt2
 python hfd.py --model private/model --token hf_xxxxx
 ```
 
+如果设置了代理的话，请先设置HTTP_PROXY/HTTPS_PROXY环境变量：
+```bash
+export HTTP_PROXY="http://127.0.0.1:7890"
+export HTTPS_PROXY="http://127.0.0.1:7890"
+```
+
 ## 下载方法2：使用huggingface-cli命令行工具下载
 1. 保证你的conda环境中有huggingface-hub
 2. 使用如下命令进行下载
